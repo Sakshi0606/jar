@@ -1,0 +1,58 @@
+ 
+	  Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+			    .withTimeout(30, TimeUnit.SECONDS)
+			    .pollingEvery(5, TimeUnit.SECONDS)
+			    .ignoring(NoSuchElementException.class)
+			    .ignoring(StaleElementReferenceException.class);
+
+			WebElement foo = wait.until(new Function<WebDriver, WebElement>() 
+			{
+			  public WebElement apply(WebDriver driver) {
+			  return driver.findElement(By.name("qq"));
+			}
+			});
+			
+		foo.sendKeys("abc");	
+
+
+
+
+
+
+
+
+
+
+WebDriver interface
+
+RemoteWebDriver is Class implements WebDriver
+
+FirefoxDriver extends RemoteWebDriver
+ChromeDriver extends RemoteWebDriver
+
+
+
+Selenese is the set of selenium commands which are used to test your web application.
+
+Actions:
+--------
+Commands which change the state of the application are classified as actions, like click on some link, select some options on the page, select a value from drop down etc. When action is performed on page the test will fail if the action is not successful. Most common action action commands of selenium are:
+    a. ClickAndWait
+    b. Click
+
+Accessors
+----------
+These commands check the state of the application and stores the application state in some variable. Some examples of accessors are as follows.a. storeTitle
+
+    Examples:
+    a. storeTextPresent: If text is found on the page then it stores     the boolean value as true else store false.
+
+Assertions:
+-----------
+Assertions are used like the checkpoints or verification points in automation. Assertion verifies the state of the application conforms to the expected state.Example:a. verifyText
+    b. verifyTitle
+    c. assertText
+
+
+
+
