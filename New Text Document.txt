@@ -1,0 +1,40 @@
+package JunitD7;
+
+import static org.junit.Assert.*;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
+
+import util.BrowserSetup;
+
+public class HeadLessExecution {
+	static WebDriver driver;
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception 
+	{
+		driver=BrowserSetup.browserStart("chrome") ;
+		driver = new HtmlUnitDriver(true);
+		
+		
+	}
+
+	
+
+	@Test
+	public void test() {
+		driver.get("http://seleniumhq.org");
+		driver.findElement(By.linkText("Download")).click();
+	 assertEquals("Downloads", driver.getTitle());
+	assertTrue(driver.findElement(By.linkText("Maven users")).isDisplayed());
+		
+	}
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception
+	{
+		driver.quit();
+	}
+}
